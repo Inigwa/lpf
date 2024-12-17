@@ -1,0 +1,25 @@
+{
+    "name": "username/lpf",
+    "description": "PHPUnit testing for OperatorRequests and ManagerRequests",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "classmap": [
+            "dbconnection.php",
+            "OperatorRequests.php",
+            "ManagerRequests.php",
+            "LpfEquipmentData.php",
+            "EqulpmentLfpData.php"
+        ]
+    },
+    "scripts": {
+        "test": "phpunit --testdox"
+    }
+}
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник ЛПФ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Справочник ЛПФ</h1>
+
+        <!-- Таблица с информацией о ЛПФ -->
+        <div class="card">
+            <div class="card-header">Список ЛПФ</div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Адрес</th>
+                            <th>График работы</th>
+                            <th>Связанная техника</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lpfTableBody">
+                        <tr>
+                            <td>ЛПФ 1</td>
+                            <td>Адрес 1</td>
+                            <td>9:00 - 18:00</td>
+                            <td>
+                                <ul>
+                                    <li>Техника 1 (Оператор: Иван)</li>
+                                    <li>Техника 2 (Оператор: Сергей)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ЛПФ 2</td>
+                            <td>Адрес 2</td>
+                            <td>8:00 - 17:00</td>
+                            <td>
+                                <ul>
+                                    <li>Техника 3 (Оператор: Анна)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Если нужна динамическая загрузка данных, можно использовать следующий пример
+        const lpfData = [
+            {
+                name: 'ЛПФ 1',
+                address: 'Адрес 1',
+                schedule: '9:00 - 18:00',
+                equipment: [
+                    { id: 1, name: 'Техника 1', operator: 'Иван' },
+                    { id: 2, name: 'Техника 2', operator: 'Сергей' }
+                ]
+            },
+            {
+                name: 'ЛПФ 2',
+                address: 'Адрес 2',
+                schedule: '8:00 - 17:00',
+                equipment: [
+                    { id: 3, name: 'Техника 3', operator: 'Анна' }
+                ]
+            }
+        ];
+
+        const tableBody = document.getElementById('lpfTableBody');
+
+        function renderLpfData() {
+            tableBody.innerHTML = '';
+            lpfData.forEach(lpf => {
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = lpf.name;
+
+                const addressCell = document.createElement('td');
+                addressCell.textContent = lpf.address;
+
+                const scheduleCell = document.createElement('td');
+                scheduleCell.textContent = lpf.schedule;
+
+                const equipmentCell = document.createElement('td');
+                const equipmentList = document.createElement('ul');
+                lpf.equipment.forEach(eq => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${eq.name} (Оператор: ${eq.operator})`;
+                    equipmentList.appendChild(listItem);
+                });
+                equipmentCell.appendChild(equipmentList);
+
+                row.appendChild(nameCell);
+                row.appendChild(addressCell);
+                row.appendChild(scheduleCell);
+                row.appendChild(equipmentCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Рендерим данные при загрузке страницы
+        renderLpfData();
+    </script>
+</body>
+</html>

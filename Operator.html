@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оператор</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <a href="LfpReference.html" class="btn btn-primary">Справочник ЛПФ</a>
+        <a href="EquipmentReference.html" class="btn btn-secondary">Справочник техники</a>
+    </div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Оператор: Управление техникой</h1>
+
+        <!-- Добавление техники -->
+        <div class="card mb-4">
+            <div class="card-header">Добавить технику</div>
+            <div class="card-body">
+                <form id="add-equipment-form">
+                    <div class="mb-3">
+                        <label for="registrationNumber" class="form-label">Регистрационный номер</label>
+                        <input type="text" class="form-control" id="registrationNumber" placeholder="Введите номер" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="operatorName" class="form-label">Имя оператора</label>
+                        <input type="text" class="form-control" id="operatorName" placeholder="Введите имя" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Список техники -->
+        <div class="card mb-4">
+            <div class="card-header">Моя техника</div>
+            <div class="card-body">
+                <ul class="list-group" id="equipment-list">
+                    <li class="list-group-item">Пример техники: Регистрационный номер - Оператор</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Просмотр ЛПФ -->
+        <div class="card">
+            <div class="card-header">Связанные ЛПФ</div>
+            <div class="card-body">
+                <ul class="list-group" id="lpf-list">
+                    <li class="list-group-item">Пример ЛПФ: Название - Адрес</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Пример обработки добавления техники
+        document.getElementById('add-equipment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const registrationNumber = document.getElementById('registrationNumber').value;
+            const operatorName = document.getElementById('operatorName').value;
+
+            const newEquipment = document.createElement('li');
+            newEquipment.className = 'list-group-item';
+            newEquipment.textContent = `Техника: ${registrationNumber} - Оператор: ${operatorName}`;
+            
+            document.getElementById('equipment-list').appendChild(newEquipment);
+
+            // Очистить форму
+            event.target.reset();
+        });
+    </script>
+</body>
+</html>
